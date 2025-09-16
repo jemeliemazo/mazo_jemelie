@@ -14,12 +14,12 @@
       <h1 class="text-3xl font-bold text-pink-600 mb-6 text-center">🎓 Students List</h1>
 
       <div class="flex gap-3 justify-center mb-4">
-        <a href="/students/create" 
+        <a href="/index.php/students/create"
            class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-5 py-2 rounded-full shadow-md hover:scale-105 transition">
           + Add Student
         </a>
 
-        <a href="/students/delete_all"
+        <a href="/index.php/students/delete_all"
            onclick="return confirm('Are you sure you want to delete ALL records?')"
            class="bg-gradient-to-r from-red-400 to-red-500 text-white px-5 py-2 rounded-full shadow-md hover:scale-105 transition">
           🗑 Delete All
@@ -48,11 +48,11 @@
                   <td class="py-3 px-4 border-b text-gray-700"><?= $student['email'] ?></td>
                   <td class="py-3 px-4 border-b text-center">
                     <div class="flex flex-col items-center gap-2">
-                      <a href="/students/edit/<?= $student['id'] ?>" 
+                      <a href="/index.php/students/edit/<?= $student['id'] ?>"
                          class="bg-blue-400 text-white px-4 py-1 rounded-full shadow hover:scale-105 transition">
                         ✏️ Edit
                       </a>
-                      <a href="/students/delete/<?= $student['id'] ?>" 
+                      <a href="/index.php/students/delete/<?= $student['id'] ?>"
                          onclick="return confirm('Are you sure you want to delete this student?')"
                          class="bg-red-400 text-white px-4 py-1 rounded-full shadow hover:scale-105 transition">
                         ❌ Delete

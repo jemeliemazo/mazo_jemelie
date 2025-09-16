@@ -13,7 +13,7 @@
     <div class="flex-1">
       <h2 class="text-3xl font-bold text-pink-600 mb-6 text-center">✨ Add New Student ✨</h2>
 
-      <form action="/students/store" method="post" class="space-y-5">
+      <form action="/index.php/students/store" method="post" class="space-y-5">
         
         <div>
           <label class="block font-semibold text-gray-700 mb-1">📝 Last Name</label>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="flex justify-between pt-4">
-          <a href="/students/index" 
+          <a href="/index.php/students/index" 
              class="bg-gradient-to-r from-gray-400 to-gray-500 text-white px-5 py-2 rounded-full shadow hover:scale-105 transition">
             ⬅ Back
           </a>

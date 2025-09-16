@@ -1,5 +1,8 @@
 FROM php:8.2-apache
 
+# Update system packages for security
+RUN apt-get update && apt-get upgrade -y && apt-get clean
+
 # Install PDO MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
