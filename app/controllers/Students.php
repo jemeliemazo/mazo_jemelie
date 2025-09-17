@@ -82,7 +82,10 @@ class Students extends Controller {
 
     public function update($id)
     {
-        $page = $this->io->post('page') ?? 1;
+        $page = $this->io->post('page');
+        if (!$page) {
+            $page = 1;
+        }
 
         $data = [
             'last_name'  => $_POST['last_name'],
