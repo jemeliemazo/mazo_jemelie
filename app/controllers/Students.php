@@ -20,7 +20,13 @@ class Students extends Controller {
         $this->pagination->set_theme('tailwind');
 
         // Get current page from URL segment (default to 1)
-        $page = $this->io->segment(3) ? (int)$this->io->segment(3) : 1;
+        if (method_exists($this->io, 'segment')) {
+            $page = $this->io->segment(3) ? (int)$this->io->segment(3) : 1;
+        } elseif (isset($_GET['page'])) {
+            $page = (int) $_GET['page'];
+        } else {
+            $page = 1;
+        }
 
         // Set pagination parameters
         $rows_per_page = 5; // Show 5 students per page

@@ -65,7 +65,13 @@ class FileSessionHandler extends Session implements SessionHandlerInterface {
             $this->save_path = rtrim(config_item('sess_save_path'), '/\\');
             ini_set('session.save_path', $this->save_path);
         } else {
-            $this->save_path = rtrim(ini_get('session.save_path'), '/\\');
+            $default = ini_get('session.save_path');
+            if (empty($default) || !is_dir($default)) {
+                $this->save_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'lavalust_sessions';
+            } else {
+                $this->save_path = rtrim($default, '/\\');
+            }
+            ini_set('session.save_path', $this->save_path);
         }
 
     }
