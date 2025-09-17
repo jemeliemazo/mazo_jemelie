@@ -68,6 +68,16 @@
             <?php endif; ?>
           </tbody>
         </table>
+
+        <!-- Pagination Info -->
+        <div class="mt-4 text-center text-gray-600">
+          <?= $pagination_info ?? '' ?>
+        </div>
+
+        <!-- Pagination Links -->
+        <div class="mt-4">
+          <?= $pagination ?? '' ?>
+        </div>
       </div>
     </div>
 

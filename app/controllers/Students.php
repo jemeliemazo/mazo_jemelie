@@ -16,8 +16,28 @@ class Students extends Controller {
 
     public function index()
     {
-        $students = $this->StudentModel->get_all(); 
-        $this->call->view('students/index', ['students' => $students]);
+        $this->call->library('pagination');
+        $this->pagination->set_theme('tailwind');
+
+        // Get current page from URL segment (default to 1)
+        $page = $this->io->segment(3) ? (int)$this->io->segment(3) : 1;
+
+        // Set pagination parameters
+        $rows_per_page = 5; // Show 5 students per page
+        $total_rows = $this->StudentModel->count_all();
+        $url = 'students/index';
+
+        // Initialize pagination
+        $pagination_data = $this->pagination->initialize($total_rows, $rows_per_page, $page, $url);
+
+        // Get paginated students
+        $students = $this->StudentModel->get_paginated($rows_per_page, ($page - 1) * $rows_per_page);
+
+        $this->call->view('students/index', [
+            'students' => $students,
+            'pagination' => $this->pagination->paginate(),
+            'pagination_info' => $pagination_data['info']
+        ]);
     }
 
     public function create()

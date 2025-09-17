@@ -45,5 +45,15 @@ class StudentModel extends Model {
         return $this->db->raw("TRUNCATE TABLE {$this->table}");
     }
 
+    public function get_paginated($limit, $offset)
+    {
+        return $this->db->table($this->table)->limit($limit, $offset)->get_all();
+    }
+
+    public function count_all()
+    {
+        return $this->db->table($this->table)->count();
+    }
+
 
 }
