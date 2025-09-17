@@ -1,0 +1,9 @@
+- [x] Update URLs in app/views/students/index.php to include /index.php/
+- [x] Update URLs in app/views/students/create.php to include /index.php/
+- [x] Update URLs in app/views/students/edit.php to include /index.php/
+- [x] Update redirects in app/controllers/Students.php to include /index.php/
+- [x] Modify .htaccess to skip rewriting for URLs starting with /index.php/
+- [ ] Verify URL updates and .htaccess changes are working correctly
+- [ ] Clean scheme folder files if necessary (check for obsolete files)
+- [ ] Test locally using XAMPP or Docker
+- [ ] Deploy to Render and test
