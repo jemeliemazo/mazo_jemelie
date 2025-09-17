@@ -120,6 +120,7 @@ class Pagination
     {
         $this->LAVA =& lava_instance();
         $this->LAVA->call->helper('language');
+        $this->LAVA->call->helper('url');
         $this->LAVA->call->library('session');
 
         $set_language = $this->LAVA->session->userdata('page_language') ?? config_item('language');

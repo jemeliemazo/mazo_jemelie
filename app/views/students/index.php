@@ -48,11 +48,11 @@
                   <td class="py-3 px-4 border-b text-gray-700"><?= $student['email'] ?></td>
                   <td class="py-3 px-4 border-b text-center">
                     <div class="flex flex-col items-center gap-2">
-                      <a href="/index.php/students/edit/<?= $student['id'] ?>"
+                      <a href="/index.php/students/edit/<?= $student['id'] ?>?page=<?= $pagination_info ? explode(' ', $pagination_info)[1] : 1 ?>"
                          class="bg-blue-400 text-white px-4 py-1 rounded-full shadow hover:scale-105 transition">
                         ✏️ Edit
                       </a>
-                      <a href="/index.php/students/delete/<?= $student['id'] ?>"
+                      <a href="/index.php/students/delete/<?= $student['id'] ?>/<?= $pagination_info ? explode(' ', $pagination_info)[1] : 1 ?>"
                          onclick="return confirm('Are you sure you want to delete this student?')"
                          class="bg-red-400 text-white px-4 py-1 rounded-full shadow hover:scale-105 transition">
                         ❌ Delete
@@ -63,7 +63,7 @@
               <?php endforeach; ?>
             <?php else: ?>
               <tr>
-                <td colspan="4" class="text-center py-6 text-gray-500">No students found. 🌸</td>
+                <td colspan="5" class="text-center py-6 text-gray-500">No students found. 🌸</td>
               </tr>
             <?php endif; ?>
           </tbody>

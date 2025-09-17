@@ -53,6 +53,8 @@ class Students extends Controller {
 
     public function store()
     {
+        $page = $this->io->post('page') ?? 1;
+
         $data = [
             'last_name'  => $this->io->post('last_name'),
             'first_name' => $this->io->post('first_name'),
@@ -61,8 +63,8 @@ class Students extends Controller {
 
         $this->StudentModel->insert($data);
 
-        // Redirect to students list
-        header("Location: /index.php/students/index");
+        // Redirect to students list with current page
+        header("Location: /index.php/students/index/{$page}");
         exit;
     }
 
@@ -80,6 +82,8 @@ class Students extends Controller {
 
     public function update($id)
     {
+        $page = $this->io->post('page') ?? 1;
+
         $data = [
             'last_name'  => $_POST['last_name'],
             'first_name' => $_POST['first_name'],
@@ -88,18 +92,20 @@ class Students extends Controller {
 
         $this->StudentModel->update($id, $data);
 
-        header("Location: /index.php/students/index");
+        header("Location: /index.php/students/index/{$page}");
         exit;
     }
 
 
     public function delete($id)
     {
+        $page = $this->io->segment(3) ?? 1;
+
         // Delete the record
         $this->StudentModel->delete($id);
 
-        // Redirect back to the students list
-        header('Location: /index.php/students/index');
+        // Redirect back to the students list with current page
+        header("Location: /index.php/students/index/{$page}");
         exit;
     }
 

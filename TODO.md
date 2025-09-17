@@ -4,6 +4,7 @@
 - [x] Update redirects in app/controllers/Students.php to include /index.php/
 - [x] Modify .htaccess to skip rewriting for URLs starting with /index.php/
 - [x] Add pagination to students list
+- [x] Fix site_url() undefined function error in Pagination library
 - [ ] Verify URL updates and .htaccess changes are working correctly
 - [ ] Clean scheme folder files if necessary (check for obsolete files)
 - [ ] Test locally using XAMPP or Docker
