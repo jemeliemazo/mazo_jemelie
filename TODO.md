@@ -1,3 +1,4 @@
 - [x] Change base_url in config.php to 'https://mazo-jemelie.onrender.com/' for render deployment
 - [x] Add ORDER BY id ASC in StudentModel get_paginated methods to ensure new students appear at the end
+- [x] Fix session ini_set error by checking headers_sent before ini_set
 - [ ] Test the fixes
