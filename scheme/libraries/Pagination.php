@@ -107,6 +107,11 @@ class Pagination
     ];
 
     /**
+     * @var array Extra query parameters to append to URLs
+     */
+    protected $extra_params = [];
+
+    /**
      * @var object LavaLust core instance
      */
     protected $LAVA;
@@ -198,14 +203,16 @@ class Pagination
      * @param int $rows_per_page Rows to display per page
      * @param int $page_num Current page number
      * @param string $url Base URL for page links
+     * @param array $extra_params Extra query parameters
      * @param int $crumbs Number of visible page links
      * @return array Metadata for pagination
      */
-    public function initialize($total_rows, $rows_per_page, $page_num, $url, $crumbs = 5)
+    public function initialize($total_rows, $rows_per_page, $page_num, $url, $extra_params = [], $crumbs = 5)
     {
         $this->crumbs = $crumbs;
         $this->rows_per_page = (int) $rows_per_page;
         $this->page_array['url'] = $url;
+        $this->extra_params = $extra_params;
 
         $last_page = max(1, ceil($total_rows / $this->rows_per_page));
         $this->page_num = max(1, min($page_num, $last_page));
@@ -288,6 +295,10 @@ class Pagination
     protected function build_link($page, $label, $active_class = '')
     {
         $url = site_url($this->page_array['url'].$this->page_delimiter.$page);
+        if (!empty($this->extra_params)) {
+            $query = http_build_query($this->extra_params);
+            $url .= '?' . $query;
+        }
         return '<li class="'.$this->classes['li'].'">
                     <a class="'.$this->classes['a'].' '.$active_class.'" href="'.$url.'">'.$label.'</a>
                 </li>';

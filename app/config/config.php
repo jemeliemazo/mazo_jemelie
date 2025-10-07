@@ -79,7 +79,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'https://mazo-jemelie.onrender.com/';
+$config['base_url'] 				= 'http://localhost/mazo_jemelie/';
 
 /*
 |--------------------------------------------------------------------------

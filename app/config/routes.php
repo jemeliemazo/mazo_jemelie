@@ -43,12 +43,16 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'Students::index');
+$router->get('/', 'Auth::login');
+$router->get('/login', 'Auth::login');
+$router->post('/login', 'Auth::login');
+$router->get('/logout', 'Auth::logout');
+
 $router->get('/students/index', 'Students::index');
-$router->get('/students/index/{page}', 'Students::index');
+$router->get('/students/index/{page}', 'Students::index')->where_number('page');
 $router->get('/students/create', 'Students::create');
 $router->post('/students/store', 'Students::store');
-$router->get('/students/edit/{id}', 'Students::edit');
-$router->post('/students/update/{id}', 'Students::update');
-$router->get('/students/delete/{id}', 'Students::delete');
+$router->get('/students/edit/{id}', 'Students::edit')->where_number('id');
+$router->post('/students/update/{id}', 'Students::update')->where_number('id');
+$router->get('/students/delete/{id}/{page}', 'Students::delete')->where_number('id')->where_number('page');
 $router->get('/students/delete_all', 'Students::delete_all');

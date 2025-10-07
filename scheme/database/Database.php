@@ -741,6 +741,28 @@ class Database {
     }
 
     /**
+     * group_start
+     *
+     * @return object
+     */
+    public function group_start()
+    {
+        $this->where .= ' (';
+        return $this;
+    }
+
+    /**
+     * group_end
+     *
+     * @return object
+     */
+    public function group_end()
+    {
+        $this->where .= ') ';
+        return $this;
+    }
+
+    /**
      * where
      *
      * @param  string $where

@@ -401,6 +401,19 @@ Class Io {
         $this->set_content(json_encode($data));
         $this->send();
     }
+
+	/**
+	 * URI Segment
+	 *
+	 * @param  int $seg	URI Segment
+	 * @return mixed
+	 */
+	public function segment($seg)
+	{
+		$uri = str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']);
+		$parts = explode('/', $uri);
+	    return isset($parts[$seg]) ? $parts[$seg] : false;
+	}
 }
 
 ?>

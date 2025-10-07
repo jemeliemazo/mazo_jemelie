@@ -10,7 +10,7 @@
   <div class="max-w-3xl w-full bg-white shadow-2xl rounded-2xl p-8">
     <h1 class="text-3xl font-bold text-pink-600 mb-6 text-center">➕ Add Student</h1>
 
-    <form method="post" action="/index.php/students/store">
+    <form method="post" action="<?php echo site_url('students/store'); ?>">
       <input type="hidden" name="page" value="<?= $_GET['page'] ?? 1 ?>" />
       <div class="mb-4">
         <label for="last_name" class="block text-gray-700 font-semibold mb-2">Last Name</label>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="flex justify-between items-center">
-        <a href="/index.php/students/index/<?= $_GET['page'] ?? 1 ?>"
+        <a href="<?php echo site_url('students/index/' . ($_GET['page'] ?? 1)); ?>"
            class="text-pink-600 hover:underline">← Back to List</a>
         <button type="submit"
                 class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-6 py-2 rounded-full shadow-md hover:scale-105 transition">
