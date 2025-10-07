@@ -51,7 +51,7 @@ class StudentModel extends Model {
 
     public function get_paginated($limit, $offset)
     {
-        return $this->db->table($this->table)->limit($limit, $offset)->get_all();
+        return $this->db->table($this->table)->order_by('id', 'ASC')->limit($limit, $offset)->get_all();
     }
 
     public function count_all()
@@ -86,11 +86,11 @@ class StudentModel extends Model {
     public function get_paginated_with_search($limit, $offset, $search = '')
     {
         if ($search) {
-            $sql = "SELECT * FROM {$this->table} WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ? LIMIT ? OFFSET ?";
+            $sql = "SELECT * FROM {$this->table} WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ? ORDER BY id ASC LIMIT ? OFFSET ?";
             $params = ["%" . $search . "%", "%" . $search . "%", "%" . $search . "%", $limit, $offset];
             return $this->db->raw($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            return $this->db->table($this->table)->limit($offset, $limit)->get_all();
+            return $this->db->table($this->table)->order_by('id', 'ASC')->limit($offset, $limit)->get_all();
         }
     }
 

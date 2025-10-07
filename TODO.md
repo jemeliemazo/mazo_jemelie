@@ -1,15 +1,3 @@
-- [x] Update base_url in app/config/config.php to 'http://localhost/mazo_jemelie/'
-- [x] Change rows_per_page in app/controllers/Students.php from 5 to 10
-- [x] Modify store() method in Students.php to calculate and redirect to correct page after insertion
-- [x] Update delete route in app/config/routes.php to include page parameter
-- [x] Adjust delete() method in Students.php to accept page parameter
-- [x] Update search placeholder in app/views/students/index.php
-- [x] Make search functionality case-insensitive in StudentModel.php
-- [x] Create UserModel.php with users table (id, username, password, role), create_table(), seed() with admin/user accounts
-- [x] Create Auth.php controller with login (GET/POST), logout methods, using session and UserModel
-- [x] Add auth routes: /login (GET/POST), /logout
-- [x] Create app/views/auth/login.php view for login form
-- [x] Modify Students.php controller: load session library, add auth checks in __construct or methods, check role for admin actions
-- [x] Update app/views/students/index.php: conditionally render Add Student, Delete All, Edit, Delete buttons only for admin role
-- [x] Protect routes by checking authentication in controllers
-- [ ] Test login/logout functionality and role-based access
+- [x] Change base_url in config.php to 'http://localhost/' for Docker compatibility
+- [x] Add ORDER BY id ASC in StudentModel get_paginated methods to ensure new students appear at the end
+- [ ] Test the fixes
