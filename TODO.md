@@ -1,3 +1,3 @@
-- [x] Change base_url in config.php to 'http://localhost/' for Docker compatibility
+- [x] Change base_url in config.php to 'https://mazo-jemelie.onrender.com/' for render deployment
 - [x] Add ORDER BY id ASC in StudentModel get_paginated methods to ensure new students appear at the end
 - [ ] Test the fixes
