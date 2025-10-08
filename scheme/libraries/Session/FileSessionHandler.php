@@ -63,7 +63,9 @@ class FileSessionHandler extends Session implements SessionHandlerInterface {
     {
         if (!empty(config_item('sess_save_path'))) {
             $this->save_path = rtrim(config_item('sess_save_path'), '/\\');
-            ini_set('session.save_path', $this->save_path);
+            if (!headers_sent()) {
+                ini_set('session.save_path', $this->save_path);
+            }
         } else {
             $default = ini_get('session.save_path');
             if (empty($default) || !is_dir($default)) {
@@ -71,7 +73,9 @@ class FileSessionHandler extends Session implements SessionHandlerInterface {
             } else {
                 $this->save_path = rtrim($default, '/\\');
             }
-            ini_set('session.save_path', $this->save_path);
+            if (!headers_sent()) {
+                ini_set('session.save_path', $this->save_path);
+            }
         }
 
     }
