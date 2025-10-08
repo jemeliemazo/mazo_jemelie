@@ -176,7 +176,9 @@ class Session {
 	      	}
 	    }
 
-		session_start();
+	    if (!headers_sent()) {
+		    session_start();
+	    }
 
 		//Set time before session updates
 	    $regenerate_time = (int) $this->config['sess_time_to_update'];
