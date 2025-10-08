@@ -3,4 +3,5 @@
 - [x] Fix all session errors including session_start by checking headers_sent
 - [x] Set ENVIRONMENT to 'production' and hide error display in production
 - [x] Add error handling in Students controller to display errors
+- [x] Add output buffering to prevent headers sent errors
 - [ ] Test the fixes
