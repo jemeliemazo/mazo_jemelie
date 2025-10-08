@@ -23,41 +23,45 @@ class Students extends Controller {
 
     public function index()
     {
-        $this->call->library('pagination');
-        $this->pagination->set_theme('tailwind');
+        try {
+            $this->call->library('pagination');
+            $this->pagination->set_theme('tailwind');
 
-        // Get current page from URL segment (default to 1)
-        if (method_exists($this->io, 'segment')) {
-            $page = $this->io->segment(3) ? (int)$this->io->segment(3) : 1;
-        } elseif (isset($_GET['page'])) {
-            $page = (int) $_GET['page'];
-        } else {
-            $page = 1;
+            // Get current page from URL segment (default to 1)
+            if (method_exists($this->io, 'segment')) {
+                $page = $this->io->segment(3) ? (int)$this->io->segment(3) : 1;
+            } elseif (isset($_GET['page'])) {
+                $page = (int) $_GET['page'];
+            } else {
+                $page = 1;
+            }
+
+            // Get search query
+            $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+            // Set pagination parameters
+            $rows_per_page = 5; // Show 5 students per page
+            $total_rows = $this->StudentModel->count_all_with_search($search);
+            $url = 'students/index';
+
+            // Initialize pagination
+            $pagination_data = $this->pagination->initialize($total_rows, $rows_per_page, $page, $url, ['search' => $search]);
+
+            // Get paginated students
+            $students = $this->StudentModel->get_paginated_with_search($rows_per_page, ($page - 1) * $rows_per_page, $search);
+
+            $this->call->view('students/index', [
+                'students' => $students,
+                'pagination' => $this->pagination->paginate(),
+                'pagination_info' => $pagination_data['info'],
+                'search' => $search,
+                'current_page' => $page,
+                'user_role' => $this->session->userdata('role'),
+                'username' => $this->session->userdata('username')
+            ]);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
-
-        // Get search query
-        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-
-        // Set pagination parameters
-        $rows_per_page = 5; // Show 5 students per page
-        $total_rows = $this->StudentModel->count_all_with_search($search);
-        $url = 'students/index';
-
-        // Initialize pagination
-        $pagination_data = $this->pagination->initialize($total_rows, $rows_per_page, $page, $url, ['search' => $search]);
-
-        // Get paginated students
-        $students = $this->StudentModel->get_paginated_with_search($rows_per_page, ($page - 1) * $rows_per_page, $search);
-
-        $this->call->view('students/index', [
-            'students' => $students,
-            'pagination' => $this->pagination->paginate(),
-            'pagination_info' => $pagination_data['info'],
-            'search' => $search,
-            'current_page' => $page,
-            'user_role' => $this->session->userdata('role'),
-            'username' => $this->session->userdata('username')
-        ]);
     }
 
     public function create()
