@@ -4,4 +4,5 @@
 - [x] Set ENVIRONMENT to 'production' and hide error display in production
 - [x] Add error handling in Students controller to display errors
 - [x] Add output buffering to prevent headers sent errors
+- [x] Ensure students table has AUTO_INCREMENT on id column
 - [ ] Test the fixes

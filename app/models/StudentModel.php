@@ -14,6 +14,7 @@ class StudentModel extends Model {
     {
         parent::__construct();
         $this->create_table();
+        $this->ensure_auto_increment();
         $this->seed();
     }
 
@@ -67,6 +68,13 @@ class StudentModel extends Model {
             last_name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE
         )";
+        return $this->db->raw($sql);
+    }
+
+    public function ensure_auto_increment()
+    {
+        // Alter table to ensure id is AUTO_INCREMENT
+        $sql = "ALTER TABLE {$this->table} MODIFY COLUMN id INT AUTO_INCREMENT";
         return $this->db->raw($sql);
     }
 
