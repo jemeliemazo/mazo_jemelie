@@ -83,5 +83,9 @@ define('PUBLIC_DIR', $public_folder);
  * Setup done? Then Hurray!
  * ------------------------------------------------------
  */
+if (defined('ENVIRONMENT') && ENVIRONMENT == 'production') {
+    error_reporting(E_ERROR | E_PARSE);
+    ini_set('display_errors', 0);
+}
 require_once SYSTEM_DIR . 'kernel/LavaLust.php';
 ?>
